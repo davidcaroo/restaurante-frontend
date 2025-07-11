@@ -1,0 +1,215 @@
+
+.login-page {
+  margin-top: 80px; 
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fafafa;
+  min-height: calc(100vh - 80px);
+}
+
+/* — Cabecera — */
+.login-header {
+  text-align: center;
+}
+
+.login-logo {
+  width: 60px;
+  height: 60px;
+  background: #8B4513;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 auto 1rem;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #4a4a4a;
+}
+
+.login-header p {
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.link-register {
+  color: #8B4513;
+  text-decoration: none;
+  font-weight: 500;
+}
+.link-register:hover {
+  text-decoration: underline;
+}
+
+/* — Tarjeta blanca — */
+.login-card {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* — Demo credentials — */
+.demo-box {
+  background: #e8f0ff;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.demo-box h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+.demo-item {
+  display: flex;
+  align-items: center;
+  background: #d3e1ff;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.demo-item:last-child {
+  margin-bottom: 0;
+}
+.demo-icon {
+  margin-right: 0.5rem;
+  color: #8b4513;
+}
+
+/* — Formulario — */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.25rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* — Input con icono corregido — */
+.input-icon {
+  position: relative;
+}
+
+.input-icon svg {
+  position: absolute;
+  top: 50%;
+  left: 1rem;             /* 16px desde el borde */
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;   /* deja pasar clicks al input */
+  z-index: 2;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 0.6rem 0.75rem 0.6rem 2.5rem; /* 2.5rem = 40px para espacio de icono */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #333;
+  background: #fff;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.input-icon input::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+/* — Toggle password — */
+.toggle-pass {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+/* — Recordarme y olvido — */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #555;
+}
+.link-forgot {
+  color: #8B4513;
+  text-decoration: none;
+}
+.link-forgot:hover {
+  text-decoration: underline;
+}
+
+/* — Botón login — */
+.btn-login {
+  margin-top: 0.5rem;
+  background: #8B4513;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-login:hover {
+  opacity: 0.9;
+}
+
+/* — Responsive — */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.5rem 1rem;
+  }
+}
+
+
+.login-page .login-card .login-form .input-icon {
+  position: relative !important;
+}
+
+.login-page .login-card .login-form .input-icon svg {
+  position: absolute !important;
+  top: 50% !important;
+  left: 16px !important;               /* siempre 16px desde el borde */
+  transform: translateY(-50%) !important;
+  pointer-events: none !important;     /* deja clicar el input */
+  z-index: 5 !important;
+}
+
+.login-page .login-card .login-form .input-icon input {
+  padding-left: 40px !important;       /* deja 40px para hueco del icono */
+  box-sizing: border-box !important;   /* que incluya padding en el width */
+  z-index: 1 !important;
+}

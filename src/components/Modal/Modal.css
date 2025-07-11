@@ -1,0 +1,126 @@
+/* Modal.css */
+
+/* 1) Capa semitransparente que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* permite clics en el overlay, pero no interfiere con el contenido */
+    pointer-events: auto;
+}
+
+/* 2) Tarjeta del modal */
+.modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem 1.5rem 1.5rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    pointer-events: auto;
+    /* asegura que reciba los eventos de input */
+}
+
+/* 3) Botón de cerrar */
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 4) Inputs (asegúrate de usar la clase .reservation-form en tu <form>) */
+.reservation-form label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+.reservation-form input,
+.reservation-form textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.reservation-form input:focus,
+.reservation-form textarea:focus {
+    outline: none;
+    border-color: #d97706;
+}
+
+/* 5) Agrupación de horas inline */
+.time-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.time-group label {
+    flex: 1;
+}
+
+/* 6) Botones al pie */
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.65rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #16a34a;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #15803d;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+/* 7) Responsive */
+@media (max-width: 480px) {
+    .time-group {
+        flex-direction: column;
+    }
+}

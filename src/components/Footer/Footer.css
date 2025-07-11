@@ -1,0 +1,151 @@
+.footer {
+    background: #000;
+    color: #fff;
+    padding: 2rem 1rem 1.5rem;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* IZQUIERDA */
+.footer-left {
+    flex: 1.1;
+    min-width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.footer-logo {
+    height: 58px;
+    width: auto;
+    margin-bottom: 0.8rem;
+}
+
+.footer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem 0;
+}
+
+.footer-menu ul li {
+    margin-bottom: 0.4rem;
+    font-size: 15px;
+}
+
+.footer-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.footer-menu ul li a:hover {
+    color: orange;
+}
+
+.footer-mini {
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 0.4rem;
+}
+
+.footer-social-icons {
+    margin-top: 18px;
+}
+
+.footer-social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #1877f2;
+    color: #fff;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+    font-size: 1.8rem;
+    transition: opacity 0.2s, background 0.2s;
+    text-decoration: none;
+}
+
+.footer-social-icons a:last-child {
+    background: #fd7e14;
+    margin-right: 0;
+}
+
+.footer-social-icons a:hover {
+    opacity: 0.8;
+}
+
+/* CENTRO */
+.footer-center {
+    flex: 1.1;
+    min-width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.footer-contact {
+    font-size: 15px;
+    color: #fff;
+}
+
+.footer-contact strong {
+    font-size: 15.2px;
+    color: #fff;
+    margin-top: 1.1rem;
+    display: block;
+}
+
+/* MAPA */
+.footer-map {
+    flex: 1.2;
+    min-width: 180px;
+    max-width: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: -10px;
+}
+
+.footer-map iframe {
+    width: 98%;
+    border: 3px solid orange;
+    border-radius: 3px;
+}
+
+/* BOTTOM */
+.footer-bottom {
+    margin-top: 1.6rem;
+    text-align: center;
+    font-size: 0.96rem;
+    color: #e2e2e2;
+}
+
+@media (max-width: 900px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-map {
+        margin: 1.5rem 0 0 0;
+        max-width: 100%;
+    }
+}

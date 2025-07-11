@@ -1,0 +1,118 @@
+
+.tf__container {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../../assets/Banner.png') center center / cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+/* 2) Tarjeta del formulario */
+.testimonios-form {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem 2rem 2.5rem;
+    box-sizing: border-box;
+    margin-top: -0px;
+    /* flota sobre el fondo */
+}
+
+/* 3) Título */
+.testimonios-form h3 {
+    margin: 0 0 1.5rem;
+    text-align: center;
+    color: #3b1709;
+    font-size: 1.75rem;
+}
+
+/* 4) Labels y campos */
+.testimonios-form label {
+    display: block;
+    margin-bottom: 1rem;
+    color: #4a4a4a;
+    font-weight: 500;
+}
+
+.testimonios-form input,
+.testimonios-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fafafa;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.testimonios-form input:focus,
+.testimonios-form textarea:focus {
+    outline: none;
+    border-color: #d97706;
+}
+
+/* 5) Botón principal */
+.testimonios-form button {
+    display: block;
+    width: 100%;
+    padding: 0.85rem;
+    margin-top: 1.75rem;
+    background-color: #d97706;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.testimonios-form button:hover:not(:disabled) {
+    background-color: #b45309;
+    transform: translateY(-2px);
+}
+
+.testimonios-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* 6) Mensajes de estado */
+.tf__msg {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.tf__success {
+    color: #16a34a;
+}
+
+.tf__error {
+    color: #dc2626;
+}
+
+/* 7) Responsive */
+@media (max-width: 768px) {
+    .tf__container {
+        padding: 3rem 1rem;
+        min-height: auto;
+    }
+
+    .testimonios-form {
+        margin-top: 0;
+        padding: 1.5rem 1rem 2rem;
+    }
+}

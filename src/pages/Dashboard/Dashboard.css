@@ -1,0 +1,229 @@
+/* Este archivo ya fue proporcionado en la respuesta anterior,
+   pero lo incluyo aquí para completar el conjunto de archivos solicitados. */
+.dashboardContainer {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dashboardContainer h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.dashboardContainer p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.dashboardContainer p strong {
+    color: #4CAF50;
+}
+
+.adminSection,
+.clientSection {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.adminSection h3,
+.clientSection h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Tabla de Reservas (Administrador) */
+.reservasTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.reservasTable th,
+.reservasTable td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.reservasTable th {
+    background-color: #e0e0e0;
+    font-weight: 600;
+    color: #333;
+}
+
+.reservasTable tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.actionButton {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color: #007bff;
+    /* Azul para editar */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.actionButton:hover {
+    background-color: #0056b3;
+}
+
+.actionButton.cancelButton {
+    background-color: #dc3545;
+    /* Rojo para cancelar */
+}
+
+.actionButton.cancelButton:hover {
+    background-color: #c82333;
+}
+
+/* Lista de Reservas (Cliente) */
+.reservasList {
+    list-style: none;
+    padding: 0;
+}
+
+.reservaItem {
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.reservaItem p {
+    margin: 0;
+    font-size: 1rem;
+    color: #444;
+    flex: 1 1 auto;
+    /* Permite que los párrafos se ajusten */
+}
+
+.reservaItem p strong {
+    color: #333;
+}
+
+.reservaItem .actionButton {
+    margin-top: 0;
+    /* Anula el margin-top del botón genérico */
+}
+
+.logoutButton {
+    background-color: #6c757d;
+    /* Gris para cerrar sesión */
+    margin-top: 40px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+}
+
+.logoutButton:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboardContainer {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    .dashboardContainer h2 {
+        font-size: 1.8rem;
+    }
+
+    .adminSection h3,
+    .clientSection h3 {
+        font-size: 1.5rem;
+    }
+
+    .reservasTable {
+        display: block;
+        overflow-x: auto;
+        /* Permite scroll horizontal en tablas grandes */
+        white-space: nowrap;
+        /* Evita que el texto se rompa */
+    }
+
+    .reservasTable thead,
+    .reservasTable tbody,
+    .reservasTable th,
+    .reservasTable td,
+    .reservasTable tr {
+        display: block;
+    }
+
+    .reservasTable thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .reservasTable tr {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .reservasTable td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .reservasTable td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .reservaItem {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .reservaItem p {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .reservaItem .actionButton {
+        width: 100%;
+        margin-top: 10px;
+        margin-right: 0;
+    }
+}

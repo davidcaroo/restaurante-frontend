@@ -1,0 +1,214 @@
+/* ===== Contenedor general ===== */
+.contact-page {
+    margin-top: 80px;
+    /* deja espacio para el header fijo */
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== Título y subtítulo ===== */
+.contact-header {
+    text-align: center;
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+    color: #4A4A4A;
+    margin-bottom: 0.5rem;
+}
+
+.contact-header p {
+    color: #666666;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0.25rem 0;
+}
+
+/* ===== Layout de contenido ===== */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* ===== Columna Izquierda ===== */
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===== Tarjetas blancas ===== */
+.info-card,
+.map-card,
+.form-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Información de contacto ===== */
+.info-card h2 {
+    margin-bottom: 1rem;
+    color: #4A4A4A;
+}
+
+.info-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.info-item .icon {
+    font-size: 1.5rem;
+    color: #8B4513;
+    margin-top: 4px;
+}
+
+.info-item h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333333;
+}
+
+.info-item p {
+    margin: 0.25rem 0;
+    color: #555555;
+    font-size: 0.95rem;
+}
+
+.info-item small {
+    color: #999999;
+    font-size: 0.85rem;
+}
+
+/* ===== Mapa interactivo simulado ===== */
+.map-card h2 {
+    margin-bottom: 1rem;
+    color: #4A4A4A;
+}
+
+.map-placeholder {
+    background: #f0f0f0;
+    height: 200px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999999;
+    text-align: center;
+}
+
+.map-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Formulario ===== */
+.form-card h2 {
+    margin-bottom: 1rem;
+    color: #4A4A4A;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    color: #333333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    color: #333333;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 0.5rem;
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.checkbox-group a {
+    color: #8B4513;
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #8B4513;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submit-btn .btn-icon {
+    font-size: 1.1rem;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+}
