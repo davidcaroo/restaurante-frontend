@@ -26,9 +26,9 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (credentials) => {
         try {
-            const data = await loginUser(credentials);
+            const data = await loginUser(credentials); // ← AQUÍ
             localStorage.setItem('token', data.access_token);
-            setUser(data.user);
+            setUser(data.cliente);
             return data;
         } catch (error) {
             console.error("Error en el login:", error);
@@ -36,11 +36,12 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+
     const register = async (userData) => {
         try {
             const data = await registerUser(userData);
             localStorage.setItem('token', data.access_token);
-            setUser(data.user);
+            setUser(data.cliente);
             return data;
         } catch (error) {
             console.error("Error en el registro:", error);

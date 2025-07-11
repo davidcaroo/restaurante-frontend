@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-    FaUser,
-    FaEnvelope,
-    FaPhone,
-    FaLock,
-    FaEye,
-    FaEyeSlash
-} from 'react-icons/fa';
-import { useAuth } from '../../contexts/AuthContext';
-import { isValidEmail } from '../../utils/helpers'; // Si tienes isValidPassword, puedes usarlo aquí
+import { FaUser, FaEnvelope, FaPhone, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Register.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost/restaurante/api/auth/register.php'  ;
+
 const Register = () => {
-    const { register } = useAuth();
     const navigate = useNavigate();
 
     const [form, setForm] = useState({
-        name: '',
+        nombre: '',
         email: '',
-        phone: '',
+        telefono: '',
         password: '',
         confirmPassword: '',
         agree: false
@@ -41,46 +33,55 @@ const Register = () => {
         }));
     };
 
+    // Valida email simple
+    const isValidEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
     const handleSubmit = async e => {
         e.preventDefault();
 
-        // Validaciones
-        if (!form.name || !form.email || !form.password || !form.confirmPassword) {
-            toast.error('Por favor, completa todos los campos obligatorios.', { autoClose: 2200 });
+        if (!form.nombre || !form.email || !form.password || !form.confirmPassword) {
+            toast.error('Por favor, completa todos los campos obligatorios.');
             return;
         }
         if (!isValidEmail(form.email)) {
-            toast.error('Introduce un email válido.', { autoClose: 2000 });
+            toast.error('Introduce un email válido.');
             return;
         }
         if (form.password.length < 6) {
-            toast.error('La contraseña debe tener al menos 6 caracteres.', { autoClose: 2200 });
+            toast.error('La contraseña debe tener al menos 6 caracteres.');
             return;
         }
         if (form.password !== form.confirmPassword) {
-            toast.error('Las contraseñas no coinciden.', { autoClose: 2000 });
+            toast.error('Las contraseñas no coinciden.');
             return;
         }
         if (!form.agree) {
-            toast.error('Debes aceptar los términos y condiciones.', { autoClose: 2100 });
+            toast.error('Debes aceptar los términos y condiciones.');
             return;
         }
 
         setLoading(true);
         try {
-            await register({
-                name: form.name,
-                email: form.email,
-                phone: form.phone,
-                password: form.password,
-                password_confirmation: form.confirmPassword
-            });
-            toast.success('¡Registro exitoso! Bienvenido/a 🎉', { autoClose: 1600 });
-            setTimeout(() => navigate('/dashboard'), 1300);
+            const response = await fetch(`${API_BASE_URL}/auth/register.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombre: form.nombre,
+                    email: form.email,
+                    telefono: form.telefono,
+                    password: form.password
+                })
+            })
+            const data = await response.json();
+            if (response.ok) {
+                toast.success('¡Registro exitoso! Bienvenido/a 🎉');
+                setTimeout(() => navigate('/login'), 1400);
+            } else {
+                toast.error(data.message || 'Error al registrar.');
+            }
         } catch (err) {
-            // Si tu backend devuelve el error en err.message o en err.response.data.message
-            const msg = err?.message || err?.response?.data?.message || 'Error al registrar. Inténtalo de nuevo.';
-            toast.error(msg, { autoClose: 2300 });
+            toast.error('Error de conexión con el servidor.');
         } finally {
             setLoading(false);
         }
@@ -99,7 +100,6 @@ const Register = () => {
                     </Link>
                 </p>
             </div>
-
             <div className="register-card">
                 <form className="register-form" onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -108,16 +108,15 @@ const Register = () => {
                             <FaUser />
                             <input
                                 type="text"
-                                name="name"
+                                name="nombre"
                                 placeholder="Tu nombre completo"
-                                value={form.name}
+                                value={form.nombre}
                                 onChange={handleChange}
                                 required
                                 autoComplete="name"
                             />
                         </div>
                     </div>
-
                     <div className="form-group">
                         <label>Email</label>
                         <div className="input-icon">
@@ -133,22 +132,20 @@ const Register = () => {
                             />
                         </div>
                     </div>
-
                     <div className="form-group">
                         <label>Teléfono</label>
                         <div className="input-icon">
                             <FaPhone />
                             <input
                                 type="tel"
-                                name="phone"
+                                name="telefono"
                                 placeholder="+34 612 345 678"
-                                value={form.phone}
+                                value={form.telefono}
                                 onChange={handleChange}
                                 autoComplete="tel"
                             />
                         </div>
                     </div>
-
                     <div className="form-group">
                         <label>Contraseña</label>
                         <div className="input-icon">
@@ -172,7 +169,6 @@ const Register = () => {
                             </button>
                         </div>
                     </div>
-
                     <div className="form-group">
                         <label>Confirmar contraseña</label>
                         <div className="input-icon">
@@ -196,7 +192,6 @@ const Register = () => {
                             </button>
                         </div>
                     </div>
-
                     <div className="form-group checkbox-group">
                         <input
                             type="checkbox"
@@ -216,7 +211,6 @@ const Register = () => {
                             </a>
                         </label>
                     </div>
-
                     <button
                         type="submit"
                         className="btn-register"

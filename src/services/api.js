@@ -1,5 +1,4 @@
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost/restaurante/api'; // Ajusta la URL de tu API PHP
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost/restaurante/api'; 
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token');
@@ -8,14 +7,20 @@ const getAuthHeaders = () => {
 
 const handleApiResponse = async (response) => {
     if (!response.ok) {
-        const errorData = await response.json();
+        let errorData;
+        try {
+            errorData = await response.json();
+        } catch {
+            errorData = { message: 'Error desconocido en el servidor.' };
+        }
         throw new Error(errorData.message || `Error HTTP! Status: ${response.status}`);
     }
     return response.json();
 };
 
+// ---- AUTENTICACIÓN ----
 export const loginUser = async (credentials) => {
-    const response = await fetch(`${API_BASE_URL}/login`, {
+    const response = await fetch(`${API_BASE_URL}/auth/login.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(credentials),
@@ -24,7 +29,7 @@ export const loginUser = async (credentials) => {
 };
 
 export const registerUser = async (userData) => {
-    const response = await fetch(`${API_BASE_URL}/register`, {
+    const response = await fetch(`${API_BASE_URL}/auth/register.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(userData),
@@ -33,24 +38,25 @@ export const registerUser = async (userData) => {
 };
 
 export const logoutUser = async () => {
-    const response = await fetch(`${API_BASE_URL}/logout`, {
+    const response = await fetch(`${API_BASE_URL}/auth/logout.php`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            ...getAuthHeaders(), // Enviar token para que el backend lo invalide si usa lista negra
+            ...getAuthHeaders(), 
         },
     });
     return handleApiResponse(response);
 };
 
 export const fetchCurrentUser = async () => {
-    const response = await fetch(`${API_BASE_URL}/user`, {
+    const response = await fetch(`${API_BASE_URL}/auth/user.php`, {
         headers: { 'Accept': 'application/json', ...getAuthHeaders() },
     });
     return handleApiResponse(response);
 };
 
+// ---- MESAS ----
 export const fetchMesas = async () => {
     const response = await fetch(`${API_BASE_URL}/mesas/read.php`, {
         headers: { 'Accept': 'application/json' },
@@ -58,6 +64,7 @@ export const fetchMesas = async () => {
     return handleApiResponse(response);
 };
 
+// ---- TESTIMONIOS ----
 export const fetchTestimonios = async () => {
     const response = await fetch(`${API_BASE_URL}/testimonios/read.php`, {
         headers: { 'Accept': 'application/json' },
@@ -65,6 +72,7 @@ export const fetchTestimonios = async () => {
     return handleApiResponse(response);
 };
 
+// ---- RESERVAS ----
 export const createReserva = async (reservaData) => {
     const response = await fetch(`${API_BASE_URL}/reservas/create.php`, {
         method: 'POST',
@@ -74,8 +82,16 @@ export const createReserva = async (reservaData) => {
     return handleApiResponse(response);
 };
 
+export const fetchUserReservations = async () => {
+    const response = await fetch(`${API_BASE_URL}/reservas/user.php`, {
+        headers: { 'Accept': 'application/json', ...getAuthHeaders() },
+    });
+    return handleApiResponse(response);
+};
+
+// ---- CUPONES ----
 export const validateCoupon = async (couponCode) => {
-    const response = await fetch(`${API_BASE_URL}/cupones/validar`, {
+    const response = await fetch(`${API_BASE_URL}/cupones/validar.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ codigo: couponCode }),
@@ -83,17 +99,11 @@ export const validateCoupon = async (couponCode) => {
     return handleApiResponse(response);
 };
 
-export const fetchUserReservations = async () => {
-    const response = await fetch(`${API_BASE_URL}/reservas/user`, { // Nuevo endpoint
+// ---- ADMIN (Opcional, según tu backend) ----
+export const fetchAllReservas = async () => {
+    const response = await fetch(`${API_BASE_URL}/reservas/read.php`, {
         headers: { 'Accept': 'application/json', ...getAuthHeaders() },
     });
     return handleApiResponse(response);
 };
 
-// Funciones de ejemplo para admin (requieren token de admin)
-export const fetchAllReservas = async () => {
-    const response = await fetch(`${API_BASE_URL}/reservas`, {
-        headers: { 'Accept': 'application/json', ...getAuthHeaders() },
-    });
-    return handleApiResponse(response);
-};

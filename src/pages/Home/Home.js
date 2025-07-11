@@ -63,7 +63,7 @@ function Home({ onReserveClick }) {
       />
       <Hero />
       <About />
- 
+
       <HeroInfo
         onMenuClick={handleMenu}
         onMesasClick={handleMesasDisponibles}
@@ -78,7 +78,7 @@ function Home({ onReserveClick }) {
               key={mesa.id}
               title={`Mesa ${mesa.id} (${mesa.tipo.charAt(0).toUpperCase() + mesa.tipo.slice(1)})`}
               description={`Capacidad: ${mesa.capacidad} personas`}
-              imageUrl={mesa.imagen_url || '/public/mesa-default.png'}
+              imageUrl={mesa.imagen_url || '/mesa-default.jpg'}
               buttonText="Reservar Mesa"
               onButtonClick={() => onReserveClick(mesa.id)}
             />
